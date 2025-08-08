@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Q‑Loan™ — Quantum Lending Platform</title>
+  <meta name="description" content="Adaptive, self‑correcting loans powered by quantum mathematics. Beyond classical banking." />
+  <meta property="og:title" content="Q‑Loan™ — Quantum Lending Platform" />
+  <meta property="og:description" content="Adaptive, self‑correcting loans powered by quantum mathematics." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#00AAFF" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Brand palette */
+      --quantum-cyan: #00FFC3;
+      --neon-azure: #00AAFF;
+      --magenta-pulse: #FF00D4;
+      --solar-gold: #FFD700;
+      --quantum-black: #0A0A0A;
+      --deep-space: #121212;
+      --text-1: #EDEFF3;
+      --text-2: #A9B0BC;
+      --ok: #28d17c;
+      --warn: #ffb300;
+      /* Gradients */
+      --grad-primary: linear-gradient(135deg, var(--quantum-cyan) 0%, var(--neon-azure) 100%);
+      --grad-secondary: linear-gradient(135deg, var(--magenta-pulse) 0%, var(--solar-gold) 100%);
+    }
+
+    * { box-sizing: border-box }
+    html, body { height: 100% }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, Noto Sans, sans-serif;
+      color: var(--text-1);
+      background: var(--quantum-black);
+      overflow-x: hidden;
+    }
+
+    /* Animated gradient backdrop */
+    .backdrop {
+      position: fixed; inset: -20vmax; z-index: -1;
+      background: radial-gradient(60vmax 60vmax at 20% 30%, #00ffc325, transparent 60%),
+                  radial-gradient(50vmax 40vmax at 80% 20%, #00aaff22, transparent 60%),
+                  radial-gradient(50vmax 50vmax at 40% 80%, #ff00d422, transparent 60%);
+      filter: blur(40px) saturate(140%);
+      animation: float-bg 18s ease-in-out infinite alternate;
+    }
+    @keyframes float-bg { from { transform: translate3d(0,0,0) scale(1)} to { transform: translate3d(2vmax,-2vmax,0) scale(1.05)} }
+
+    /* Header */
+    header {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: saturate(140%) blur(8px);
+      background: color-mix(in srgb, #0a0a0a 70%, #0a0a0a00);
+      border-bottom: 1px solid #ffffff14;
+    }
+    .nav {
+      max-width: 1200px; margin: 0 auto; padding: .75rem 1rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .brand { display: flex; align-items: center; gap: .6rem; font-weight: 900; letter-spacing: .2px; }
+    .brand-logo {
+      width: 36px; height: 36px; border-radius: 10px; background: var(--grad-primary);
+      box-shadow: 0 0 24px #00ffc355, 0 0 32px #00aaff33 inset;
+    }
+    nav ul { list-style: none; display: flex; gap: 1rem; margin: 0 0 0 auto; padding: 0 }
+    nav a { color: var(--text-2); text-decoration: none; font-weight: 600; }
+    nav a:hover { color: var(--text-1) }
+    .cta {
+      margin-left: .5rem; padding: .6rem 1rem; border-radius: 999px; border: 0; cursor: pointer;
+      background: var(--grad-primary); color: #001318; font-weight: 800; letter-spacing: .2px;
+      box-shadow: 0 10px 30px #00aaff3a, 0 0 0 0 #00ffc310; transition: transform .2s ease, box-shadow .3s ease;
+    }
+    .cta:hover { transform: translateY(-1px); box-shadow: 0 14px 36px #00aaff55, 0 0 0 6px #00ffc311 }
+
+    /* Hero */
+    .hero {
+      max-width: 1200px; margin: 0 auto; padding: clamp(3rem, 6vw, 6rem) 1rem 3rem;
+      display: grid; grid-template-columns: 1.2fr .8fr; gap: clamp(1rem, 4vw, 3rem);
+      align-items: center;
+    }
+    .eyebrow { color: var(--neon-azure); font-weight: 800; letter-spacing: .18em; text-transform: uppercase; font-size: .85rem }
+    h1 { font-size: clamp(2.2rem, 5.6vw, 4.25rem); line-height: 1.02; margin: .5rem 0 1rem; font-weight: 900 }
+    .lead { color: var(--text-2); font-size: clamp(1rem, 2.2vw, 1.25rem); max-width: 60ch }
+    .hero-actions { display: flex; gap: .75rem; margin-top: 1.25rem; flex-wrap: wrap }
+    .ghost {
+      padding: .6rem 1rem; border-radius: 999px; border: 1px solid #ffffff2a; background: #ffffff05; color: var(--text-1); font-weight: 700;
+    }
+
+    /* Hero visual */
+    .viz {
+      aspect-ratio: 1 / 1; border-radius: 16px; background: #0c0f13; border: 1px solid #ffffff14; position: relative; overflow: hidden;
+      box-shadow: 0 20px 50px #00000080, inset 0 0 60px #00aaff0a;
+    }
+    .grid {
+      position: absolute; inset: 0; background: linear-gradient(#ffffff08 1px, transparent 1px) 0 0 / 28px 28px,
+                                          linear-gradient(90deg, #ffffff08 1px, transparent 1px) 0 0 / 28px 28px;
+      mask: radial-gradient(70% 70% at 50% 50%, #000 70%, transparent 100%);
+    }
+    .orb { position: absolute; width: 240px; height: 240px; border-radius: 999px; filter: blur(24px);
+      background: var(--grad-primary); opacity: .55; left: 10%; top: 18%; animation: float 8s ease-in-out infinite alternate }
+    .orb.b { background: var(--grad-secondary); width: 180px; height: 180px; left: 58%; top: 52%; animation-duration: 10s; opacity: .5 }
+    @keyframes float { to { transform: translate3d(10px, -16px, 0) scale(1.06) } }
+    .wave { position: absolute; inset: 0; }
+    .wave svg { width: 120%; height: 120%; transform: translate(-8%, -6%) }
+
+    /* Sections */
+    section { padding: clamp(3rem, 7vw, 6rem) 1rem; }
+    .container { max-width: 1200px; margin: 0 auto }
+    .section-title { font-size: clamp(1.6rem, 3.8vw, 2.6rem); line-height: 1.1; margin: 0 0 1rem; font-weight: 900 }
+    .muted { color: var(--text-2) }
+
+    /* Problem */
+    .problem {
+      display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1rem, 4vw, 3rem); align-items: center;
+      background: linear-gradient(180deg, #ffffff06, transparent 40%);
+      border-top: 1px solid #ffffff12; border-bottom: 1px solid #ffffff10;
+    }
+    .card { background: #0c0f13; border: 1px solid #ffffff14; border-radius: 16px; padding: 1.25rem; }
+    .badge { display:inline-flex; align-items:center; gap:.5rem; padding:.35rem .6rem; border-radius:999px; background:#ff525222; color:#ff9c9c; font-weight:700; font-size:.8rem; }
+
+    /* Solution */
+    .solution .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1rem }
+    .feature { padding: 1rem; border-radius: 14px; background: #0d1116; border: 1px solid #ffffff12 }
+
+    /* Tech */
+    .tech { display:grid; grid-template-columns: 1fr 1fr; gap: 1rem }
+    .tech .tile { border-radius: 16px; background: #0c0f13; border: 1px solid #ffffff14; padding: 1rem }
+    .formula { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; color: #d7ecff; font-weight: 700 }
+
+    /* Advantage */
+    .adv { display:grid; grid-template-columns: repeat(3, 1fr); gap: 1rem }
+    .adv .tile { background:#0c0f13; border:1px solid #ffffff14; border-radius:16px; padding:1rem }
+
+    /* Applications */
+    .apps { display:grid; grid-template-columns: repeat(3, 1fr); gap: 1rem }
+    .apps .tile { background:#0d1116; border:1px solid #ffffff12; border-radius:14px; padding:1rem }
+    .viz-panel { margin-top: 1rem; background:#0b0e12; border:1px solid #ffffff12; border-radius:14px; padding:1rem }
+    .slider-row { display:flex; gap:.75rem; align-items:center; margin-top:.5rem }
+
+    /* Timeline */
+    .timeline { display:grid; grid-template-columns: repeat(3, 1fr); gap: 1rem }
+    .phase { background:#0c0f13; border:1px solid #ffffff14; border-radius:16px; padding:1rem }
+
+    /* Team */
+    .team { display:grid; grid-template-columns: repeat(4, 1fr); gap: 1rem }
+    .person { background:#0c0f13; border:1px solid #ffffff14; border-radius:14px; padding:1rem; text-align:center }
+    .avatar { width: 88px; height: 88px; border-radius: 999px; margin: 0 auto .6rem; background: var(--grad-primary); box-shadow: 0 0 0 6px #00aaff11; }
+
+    /* Contact */
+    form { display:grid; grid-template-columns: 1fr 1fr; gap: .75rem }
+    form .full { grid-column: 1 / -1 }
+    input, textarea { width: 100%; padding: .8rem 1rem; border-radius: 12px; border: 1px solid #ffffff22; background: #0b0e12; color: var(--text-1); }
+    textarea { min-height: 140px; resize: vertical }
+
+    footer { padding: 2rem 1rem; border-top: 1px solid #ffffff14; color: var(--text-2) }
+
+    /* Responsive */
+    @media (max-width: 980px) {
+      .hero { grid-template-columns: 1fr; }
+      .problem, .tech { grid-template-columns: 1fr }
+      .adv, .apps, .timeline, .team { grid-template-columns: 1fr 1fr }
+      form { grid-template-columns: 1fr }
+      nav ul { display: none }
+    }
+    @media (max-width: 580px) {
+      .adv, .apps, .timeline, .team { grid-template-columns: 1fr }
+    }
+  </style>
+</head>
+<body>
+  <div class="backdrop" aria-hidden="true"></div>
+  <header>
+    <div class="nav">
+      <div class="brand"><div class="brand-logo" aria-hidden="true"></div> <span>Q‑Loan™</span></div>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="#problem">Problem</a></li>
+          <li><a href="#solution">Solution</a></li>
+          <li><a href="#tech">Tech</a></li>
+          <li><a href="#adv">Advantage</a></li>
+          <li><a href="#apps">Applications</a></li>
+          <li><a href="#team">Team</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="cta" onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})">Get in touch</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero" id="top">
+      <div>
+        <div class="eyebrow">Beyond classical banking</div>
+        <h1>Adaptive, self‑correcting loans powered by <span style="background:var(--grad-primary); -webkit-background-clip:text; background-clip:text; color:transparent">quantum mathematics</span>.</h1>
+        <p class="lead">Q‑Loan™ models credit as a multidimensional geometric object—unlocking superposition‑based personalization for borrowers and entanglement‑driven stability for portfolios.</p>
+        <div class="hero-actions">
+          <button class="cta" onclick="document.querySelector('#solution').scrollIntoView({behavior:'smooth'})">See how it works</button>
+          <a class="ghost" href="#whitepaper" onclick="alert('Whitepaper: coming soon')">Download whitepaper</a>
+        </div>
+      </div>
+      <div class="viz" aria-hidden="true">
+        <div class="grid"></div>
+        <div class="orb"></div>
+        <div class="orb b"></div>
+        <div class="wave">
+          <!-- Animated path morph (loan schedule illustration) -->
+          <svg viewBox="0 0 600 600" preserveAspectRatio="xMidYMid meet">
+            <defs>
+              <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0%" stop-color="#00FFC3" />
+                <stop offset="100%" stop-color="#00AAFF" />
+              </linearGradient>
+            </defs>
+            <path id="heroPath" d="M20,560 C180,520 260,480 340,400 C420,320 500,200 580,40" fill="none" stroke="url(#g1)" stroke-width="6" stroke-linecap="round" />
+            <g id="pulse">
+              <circle r="6" fill="#00FFC3">
+                <animateMotion dur="7s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" path="M20,560 C180,520 260,480 340,400 C420,320 500,200 580,40" />
+              </circle>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- Problem -->
+    <section id="problem" class="container problem">
+      <div>
+        <div class="badge">Linear by design</div>
+        <h2 class="section-title">Credit today is a linear system in a volatile world.</h2>
+        <p class="muted">Fixed schedules amplify risk. A single bad month can derail families; a binary pay/default model wastes viable customers and capital.</p>
+        <ul>
+          <li>Borrowers: rigidity → stress, fees, exclusion.</li>
+          <li>Lenders: inefficient risk, preventable defaults, lost opportunity.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <canvas id="problemChart" width="640" height="360" role="img" aria-label="Comparison of linear vs adaptive payments"></canvas>
+        <p class="muted" style="margin-top:.5rem">Illustration: linear schedule vs an adaptive schedule that rebalances without changing total value.</p>
+      </div>
+    </section>
+
+    <!-- Solution -->
+    <section id="solution" class="container solution">
+      <h2 class="section-title">Introducing the Q‑Loan™ Platform</h2>
+      <p class="muted">A B2B SaaS that lets lenders design and optimize intelligent credit products that adapt in real time—without altering expected returns.</p>
+      <div class="feature-grid">
+        <div class="feature"><strong>Superposition</strong><br><span class="muted">Personalized schedules at the individual level.</span></div>
+        <div class="feature"><strong>Entanglement</strong><br><span class="muted">Portfolio‑level correlation for stability.</span></div>
+        <div class="feature"><strong>AI on geometry</strong><br><span class="muted">Predictive models on superior representations.</span></div>
+      </div>
+    </section>
+
+    <!-- Tech -->
+    <section id="tech" class="container">
+      <h2 class="section-title">From rows to geometry.</h2>
+      <p class="muted">We represent a loan as a vector in an M‑dimensional space. Operators reshape schedules; parameters act as master dials for risk and cash‑flow.</p>
+      <div class="tech">
+        <div class="tile">
+          <h3>Superposition Principle</h3>
+          <p class="formula">q̄ₙ = Σⱼ |cⱼ⁽ⁿ⁾|² · qⱼ</p>
+          <p class="muted">Our engine finds coefficients <strong>c</strong> that sculpt payments—lower in lean months, higher in strong months—preserving total value.</p>
+        </div>
+        <div class="tile">
+          <h3>Entanglement Principle</h3>
+          <p class="formula">qₙᴱ = cos²(γ)·qₙ + sin²(γ)·Σₖ≠ₙ λₙₖ qₖ</p>
+          <p class="muted">Control γ as a <em>master risk dial</em> and let loans support each other so the portfolio behaves like a single, stable organism.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Advantage -->
+    <section id="adv" class="container">
+      <h2 class="section-title">Our quantum moat.</h2>
+      <div class="adv">
+        <div class="tile"><strong>Published science</strong><br><span class="muted">Peer‑reviewed foundations for strong IP.</span></div>
+        <div class="tile"><strong>AI on superior data</strong><br><span class="muted">Geometry unlocks predictive power flat tables can’t.</span></div>
+        <div class="tile"><strong>New capability</strong><br><span class="muted">Exclusive entangled optimization for risk.</span></div>
+      </div>
+    </section>
+
+    <!-- Applications -->
+    <section id="apps" class="container">
+      <h2 class="section-title">Applications</h2>
+      <div class="apps">
+        <div class="tile"><strong>TradFi</strong><br><span class="muted">Modernize fixed products without changing returns.</span></div>
+        <div class="tile"><strong>CeFi</strong><br><span class="muted">Personalize loans in centralized platforms.</span></div>
+        <div class="tile"><strong>DeFi</strong><br><span class="muted">Protocol‑level parameters for on‑chain credit.</span></div>
+      </div>
+      <div class="viz-panel">
+        <strong>Amortization mode</strong>
+        <div class="slider-row">
+          <label for="mode">French</label>
+          <input id="mode" type="range" min="0" max="3" step="1" value="0" aria-label="Amortization mode slider" />
+          <span>Quantum</span>
+        </div>
+        <canvas id="appsChart" width="800" height="300" role="img" aria-label="Amortization mode visualization"></canvas>
+        <p class="muted" id="modeLabel">Mode: French (progressive)</p>
+      </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="container">
+      <h2 class="section-title">Go‑to‑market</h2>
+      <div class="timeline">
+        <div class="phase"><strong>Phase 1 • Innovators</strong><br><span class="muted">FinTechs & neobanks capture edge with adaptive credit.</span></div>
+        <div class="phase"><strong>Phase 2 • Early majority</strong><br><span class="muted">Mid‑size institutions reduce defaults and modernize.</span></div>
+        <div class="phase"><strong>Phase 3 • Leaders</strong><br><span class="muted">Enterprise risk management at portfolio scale.</span></div>
+      </div>
+    </section>
+
+    <!-- Team -->
+    <section id="team" class="container">
+      <h2 class="section-title">Founding team</h2>
+      <div class="team">
+        <div class="person">
+          <div class="avatar" aria-hidden="true"></div>
+          <strong>Juan Sebastián Ardenghi</strong>
+          <div class="muted">PhD Physics — Mathematical development</div>
+        </div>
+        <div class="person">
+          <div class="avatar" aria-hidden="true"></div>
+          <strong>Gonzalo Iparraguirre</strong>
+          <div class="muted">PhD Anthropology — Business impact</div>
+        </div>
+        <div class="person">
+          <div class="avatar" aria-hidden="true"></div>
+          <strong>Héctor Fazio</strong>
+          <div class="muted">Creative — Product & UX</div>
+        </div>
+        <div class="person">
+          <div class="avatar" aria-hidden="true"></div>
+          <strong>Emilio García</strong>
+          <div class="muted">Computer Scientist — Blockchain engineering</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="container">
+      <h2 class="section-title">Let’s build the future of finance. Together.</h2>
+      <p class="muted">Tell us about your organization and what you want to unlock with adaptive credit.</p>
+      <form onsubmit="event.preventDefault(); alert('Thanks! We\'ll get back to you shortly.'); this.reset();">
+        <input aria-label="Full name" placeholder="Full name" required />
+        <input aria-label="Work email" type="email" placeholder="Work email" required />
+        <input aria-label="Organization" placeholder="Organization" class="full" />
+        <textarea aria-label="Message" placeholder="Message" class="full"></textarea>
+        <button class="cta" type="submit">Send</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="container">
+    <small>© <span id="y"></span> Q‑Loan™. All rights reserved. • Quantum‑grade lending infrastructure.</small>
+  </footer>
+
+  <script>
+    // Year
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Smooth anchor scrolling for desktop nav
+    document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+      const id = a.getAttribute('href');
+      const el = document.querySelector(id);
+      if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    }));
+
+    // Simple canvas charts (no external libs) — illustrative only
+    function drawProblemChart() {
+      const c = document.getElementById('problemChart'); if (!c) return; const ctx = c.getContext('2d');
+      const w = c.width, h = c.height; ctx.clearRect(0,0,w,h);
+      // axes
+      ctx.strokeStyle = '#2a3440'; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(40, 20); ctx.lineTo(40, h-30); ctx.lineTo(w-20, h-30); ctx.stroke();
+      // linear schedule (bad)
+      ctx.strokeStyle = '#ff7b7b'; ctx.lineWidth = 3;
+      ctx.beginPath(); ctx.moveTo(40, h-40); ctx.lineTo(w-30, 60); ctx.stroke();
+      // adaptive schedule (good)
+      const grad = ctx.createLinearGradient(40,0,w-30,0); grad.addColorStop(0,'#00FFC3'); grad.addColorStop(1,'#00AAFF');
+      ctx.strokeStyle = grad; ctx.lineWidth = 4; ctx.setLineDash([6,4]);
+      ctx.beginPath();
+      const steps = 8; const baseY = h-40; const topY = 70;
+      for (let i=0;i<=steps;i++){
+        const x = 40 + (w-70) * (i/steps);
+        const t = i/steps;
+        const y = baseY - (baseY-topY)*(t*t*0.9 + 0.1*Math.sin(t*4*Math.PI));
+        if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+      }
+      ctx.stroke(); ctx.setLineDash([]);
+      // legend
+      ctx.fillStyle = '#A9B0BC'; ctx.font = '12px Inter';
+      ctx.fillText('Installments', 8, 14); ctx.fillText('Time →', w-80, h-12);
+      ctx.fillStyle = '#ff9c9c'; ctx.fillRect(60, 28, 12, 3); ctx.fillText('Linear schedule', 80, 32);
+      ctx.fillStyle = '#00FFC3'; ctx.fillRect(200, 28, 12, 3); ctx.fillStyle = '#00AAFF'; ctx.fillRect(200+12, 28, 12, 3);
+      ctx.fillStyle = '#A9B0BC'; ctx.fillText('Adaptive schedule', 230, 32);
+    }
+
+    function drawAppsChart(mode){
+      const modes = ['French (progressive)','German (declining balance)','American (interest‑only)','Quantum (flexible)'];
+      const label = document.getElementById('modeLabel'); label.textContent = 'Mode: ' + modes[mode];
+      const c = document.getElementById('appsChart'); if (!c) return; const ctx = c.getContext('2d');
+      const w = c.width, h = c.height; ctx.clearRect(0,0,w,h);
+      // axes
+      ctx.strokeStyle = '#2a3440'; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(40, 20); ctx.lineTo(40, h-30); ctx.lineTo(w-20, h-30); ctx.stroke();
+      // draw schedule bars for 10 periods
+      const n = 10; const gap = 8; const barW = ((w-80) - (gap*(n-1))) / n;
+      for (let i=0;i<n;i++){
+        let pay = 0.5; // base
+        if (mode===0) pay = 0.35 + 0.5*(i/(n-1)); // French rising
+        if (mode===1) pay = 0.85 - 0.45*(i/(n-1)); // German falling
+        if (mode===2) pay = i<n-1 ? 0.3 : 1.0;     // American interest only then balloon
+        if (mode===3) pay = 0.55 + 0.2*Math.sin(i*0.9) - 0.08*Math.cos(i*1.7); // Quantum flexible shape
+        const x = 40 + i*(barW+gap); const y = (h-30) - pay*(h-80);
+        const grad = ctx.createLinearGradient(x, y, x, h-30);
+        grad.addColorStop(0,'#00FFC3'); grad.addColorStop(1,'#00AAFF');
+        ctx.fillStyle = grad; ctx.fillRect(x, y, barW, (h-30)-y);
+      }
+    }
+
+    drawProblemChart();
+    drawAppsChart(0);
+    window.addEventListener('resize', ()=>{ drawProblemChart(); drawAppsChart(Number(document.getElementById('mode').value)); });
+    document.getElementById('mode').addEventListener('input', e => drawAppsChart(Number(e.target.value)));
+  </script>
+</body>
+</html>
